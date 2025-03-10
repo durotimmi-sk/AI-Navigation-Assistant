@@ -1,0 +1,7 @@
+.env
+__pycache__
+documents
+venv/
+env/
+.DS_Store
+Dockerfile
