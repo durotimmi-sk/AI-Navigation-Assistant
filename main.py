@@ -27,7 +27,7 @@ app.mount("/static", StaticFiles(directory="templates"), name="static")
 
 # MongoDB setup for feedback
 mongo_client = MongoClient(os.getenv("MONGO_URI"))
-db = mongo_client["loubby_navigator"]
+db = mongo_client["loubby"]
 feedback_collection = db["feedback"]
 
 SUPPORTED_LANGUAGES = {
