@@ -20,7 +20,7 @@ let recognition = null;
 let hasGreeted = false;
 let conversationStarted = false; 
 const synth = window.speechSynthesis;
-const API_URL = "http://localhost:8000/chat";
+const API_URL = "/chat";
 
 const loadDataFromLocalstorage = () => {
   const savedChats = localStorage.getItem("saved-chats");
