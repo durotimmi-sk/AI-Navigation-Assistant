@@ -25,6 +25,6 @@ class LocalEmbeddings(Embeddings):
 embedding = LocalEmbeddings()
 pc = pinecone.Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 index = pc.Index(os.getenv("PINECONE_INDEX"))
-vectorstore = PineconeVectorStore(index=index, embedding=embedding, namespace="nav_indexed")
+vectorstore = PineconeVectorStore(index=index, embedding=embedding, namespace="loubby-navigation")
 
 print(f"Vectorstore initialized: {vectorstore is not None}")
