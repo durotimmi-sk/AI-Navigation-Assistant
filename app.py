@@ -38,17 +38,15 @@ def dynamic_memory_agent_step(state):
     decision_response = llm.invoke(decision_prompt.format(question=query)).content.strip().upper()
     print(f"DEBUG: Decision for '{query}': {decision_response}")
 
-    #retrieved_docs = vectorstore.similarity_search(query, k=3, namespace="loubby-navigation")
-    #context = "\n".join(doc.page_content for doc in retrieved_docs) if retrieved_docs else "No specific Loubby data found."
-    #context = truncate_text(context, max_tokens=1500)
-    #print(f"DEBUG: Context length for '{query}': {len(context)} chars")
-
-    retrieved_docs = vectorstore._collection.query(vector=[0] * 384, top_k=3, include_metadata=True)
-    context = "\n".join(doc.metadata.get("page_content", "") for doc in retrieved_docs["matches"]) if retrieved_docs["matches"] else "No specific Loubby data found."
+    retrieved_docs = vectorstore.similarity_search(query, k=3, namespace="loubby-navigation")
+    context = "\n".join(doc.page_content for doc in retrieved_docs) if retrieved_docs else "No specific Loubby data found."
     context = truncate_text(context, max_tokens=1500)
     print(f"DEBUG: Context length for '{query}': {len(context)} chars")
 
-
+    #retrieved_docs = vectorstore._collection.query(vector=[0] * 384, top_k=3, include_metadata=True)
+    #context = "\n".join(doc.metadata.get("page_content", "") for doc in retrieved_docs["matches"]) if retrieved_docs["matches"] else "No specific Loubby data found."
+    #context = truncate_text(context, max_tokens=1500)
+    #print(f"DEBUG: Context length for '{query}': {len(context)} chars")
 
     prompt_text = f"""
     You are Loubby Navigator by Team Sigma, assisting exclusively with the Loubby job search platform at <https://app.loubby.ai/>.
