@@ -9,7 +9,7 @@ load_dotenv()
 
 class LocalEmbeddings(Embeddings):
     def __init__(self):
-        self.model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+        self.model = SentenceTransformer("sentence-transformers/all-MiniLM-L12-v1")
     
     def embed_query(self, text: str):
         return self.model.encode(text).tolist()
