@@ -7,6 +7,13 @@ from sentence_transformers import SentenceTransformer
 
 load_dotenv()
 
+class DummyEmbeddings(Embeddings):
+    def embed_query(self, text: str):
+        return [0] * 384 
+   
+    def embed_documents(self, texts: list[str]):
+        return [[0] * 384 for _ in texts]
+
 #class LocalEmbeddings(Embeddings):
   #  def __init__(self):
   #      self.model = SentenceTransformer("sentence-transformers/all-MiniLM-L12-v1")
@@ -20,6 +27,6 @@ load_dotenv()
 #embedding = LocalEmbeddings()
 pc = pinecone.Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 index = pc.Index(os.getenv("PINECONE_INDEX"))
-vectorstore = PineconeVectorStore(index=index, embedding=None, namespace="loubby-navigation")
+vectorstore = PineconeVectorStore(index=index, embedding=DummyEmbeddings(), namespace="loubby-navigation")
 
 print(f"Vectorstore initialized: {vectorstore is not None}")
