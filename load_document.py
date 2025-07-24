@@ -40,6 +40,6 @@ documents = [Document(page_content=chunk, metadata={"source": "loubby.docx", "ch
 
 # Embed and upsert into Pinecone
 embedding = LocalEmbeddings()
-vectorstore.add_documents(documents, namespace="nav_indexed")
+vectorstore.add_documents(documents, namespace="loubby-navigation")
 
 print(f"Loubby document (loubby.docx) loaded into Pinecone in {len(chunks)} chunks.")
